@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'questions/style.css' %}" />
+
+{% if latest_question_list %}
+
+<!--
+<li>{{latest_question_list}}</li>
+-->
+
+    <ul>
+    {% for textquestion in latest_question_list %}
+
+    <!--
+    <li><a href="{% url 'questions:detail' textquestion.id %}">{{ textquestion.question_text }}</a></li>
+    -->
+    <li>{{textquestion.question_text}}</li>
+
+    <form action="{% url 'questions:vote' textquestion.id %}" method="post">
+      {% csrf_token %}
+      {% for choice in textquestion.choice_set.all %}
+      <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+      {% endfor %}
+      <input type="submit" value="Submit" />
+    </form>
+
+
+    {% endfor %}
+
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}

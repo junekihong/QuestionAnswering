@@ -1,0 +1,19 @@
+li a {
+    color: blue;
+}
+
+li {
+    color: black;
+    font-size: 16pt;
+    text-decoration: underline;
+}
+
+
+form {
+    color: black;
+}
+
+
+body {
+    background: white url("images/white.jpg") no-repeat right bottom;
+}
