@@ -1,6 +1,13 @@
 <h1>{{ textquestion.question_text }}</h1>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+
+<p><strong>{{ error_message }}</strong></p>
+
+<a href="{% url 'questions:index' %}">Go Back</a> 
+
+
+{% else %}
 
 <form action="{% url 'questions:vote' textquestion.id %}" method="post">
 {% csrf_token %}
@@ -10,3 +17,7 @@
 {% endfor %}
 <input type="submit" value="Vote" />
 </form>
+
+
+{% endif %}
+
